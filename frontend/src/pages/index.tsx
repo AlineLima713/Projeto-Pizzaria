@@ -19,10 +19,17 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [loadign, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
+
+    if (email === '' || password === '') {
+      alert("PREENCHA OS DADOS")
+      return;
+    }
+
+    setLoading(true);
 
     let data = {
       email,
@@ -30,6 +37,8 @@ export default function Home() {
     }
 
     await signIn(data)
+
+    setLoading(false);
   }
 
   return (
@@ -58,7 +67,7 @@ export default function Home() {
 
             <Button
               type="submit"
-              loading={false}
+              loading={loading}
             >
               Acessar
             </Button>
