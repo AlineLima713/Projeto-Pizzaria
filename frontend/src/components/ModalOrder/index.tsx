@@ -19,7 +19,7 @@ export function ModalOrder({ isOpen, onRequestClose, order }: ModalOrderProps) {
       left: '50%',
       right: 'auto',
       padding: '30px',
-      transform: 'translate(-50, -50)',
+      transform: 'translate(-50%, -50%)',
       backgroundColor: '#1d1d2e'
     }
   };
@@ -53,6 +53,10 @@ export function ModalOrder({ isOpen, onRequestClose, order }: ModalOrderProps) {
 
           </section>
         ))}
+
+        <button className={styles.buttonOrder} onClick={() => { }}>
+          Concluir pedido
+        </button>
 
       </div>
 
