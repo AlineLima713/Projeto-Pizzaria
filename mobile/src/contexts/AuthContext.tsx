@@ -30,6 +30,7 @@ type SignInProps = {
 }
 
 export const AuthContext = createContext({} as AuthContextData);
+let timer: any;
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps>({
@@ -71,6 +72,25 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     getUser();
   }, [])
+
+  useEffect(() => {
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+      (async () => {
+        if (!!user.token) {
+          const userInfo = await AsyncStorage.getItem('@sujeitopizzaria');
+          if (!userInfo) {
+            signOut()
+          }
+        }
+      })();
+    }, 1000); // 1 segundo
+
+    return () => {
+      clearInterval(timer);
+    }
+  }, [user.token]);
 
   async function signIn({ email, password }: SignInProps) {
     setLoadingAuth(true);
