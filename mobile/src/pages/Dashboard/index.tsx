@@ -26,7 +26,6 @@ export default function Dashboard() {
       })
       //precisa fazer a requisição e abrir a mesa e navegar pra próxima tela.
       navigation.navigate('Order', { number: number, order_id: response.data.id })
-
       setNumber('');
     } catch (error) {
       
